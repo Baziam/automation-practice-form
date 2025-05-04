@@ -52,6 +52,5 @@ public class AutomationPracticeFormTest {
         assertTrue($x("//table/descendant::td[contains (text(), 'Sports')]").exists());
         assertTrue($x("//table/descendant::td[contains (text(), 'Some street 1')]").exists());
         assertTrue($x("//table/descendant::td[contains (text(), 'v')]").exists());
-        sleep(3000);
     }
 }
