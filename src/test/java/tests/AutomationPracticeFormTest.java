@@ -23,7 +23,7 @@ public class AutomationPracticeFormTest {
     @Test
     void fillFormTest() {
         open("/automation-practice-form ");
-        $("#uploadPicture").uploadFromClasspath("11.png");
+        $("#uploadPicture").uploadFromClasspath("121.png");
         $("#firstName").setValue("Alex");
         $("#lastName").setValue("Alex");
         $("#userEmail").setValue("alex@egorov.com");
