@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -16,18 +17,16 @@ public class AutomationPracticeFormTest {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
-        Configuration.holdBrowserOpen = true;
-        Configuration.timeout = 5000; // default 4000
     }
 
     @Test
     void fillFormTest() {
-        open("/automation-practice-form ");
+        open("/automation-practice-form");
         $("#uploadPicture").uploadFromClasspath("1.png");
         $("#firstName").setValue("Alex");
         $("#lastName").setValue("Alex");
         $("#userEmail").setValue("alex@egorov.com");
-        $x("//*[contains(text(),'Male')]/..").click();
+        $("#genterWrapper").$(byText("Male")).click();
         $("#userNumber").setValue("2145421454");
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("April");
@@ -43,15 +42,15 @@ public class AutomationPracticeFormTest {
         $("#submit").click();
 
 
-        assertTrue($x("//table/descendant::td[contains (text(), 'Alex Alex')]").exists());
-        assertTrue($x("//table/descendant::td[contains (text(), 'alex@egorov.com')]").exists());
-        assertTrue($x("//table/descendant::td[contains (text(), 'Male')]").exists());
-        assertTrue($x("//table/descendant::td[contains (text(), '2145421454')]").exists());
-        assertTrue($x("//table/descendant::td[contains (text(), '04 April,2012')]").exists());
-        assertTrue($x("//table/descendant::td[contains (text(), 'Maths')]").exists());
-        assertTrue($x("//table/descendant::td[contains (text(), 'Sports')]").exists());
-        assertTrue($x("//table/descendant::td[contains (text(), 'Some street 1')]").exists());
-        assertTrue($x("//table/descendant::td[contains (text(), 'v')]").exists());
+        $(".modal-body").shouldHave(text("Alex Alex"));
+        $(".modal-body").shouldHave(text("alex@egorov.com"));
+        $(".modal-body").shouldHave(text("Male"));
+        $(".modal-body").shouldHave(text("2145421454"));
+        $(".modal-body").shouldHave(text("04 April,2012"));
+        $(".modal-body").shouldHave(text("Maths"));
+        $(".modal-body").shouldHave(text("Sports"));
+        $(".modal-body").shouldHave(text("Some street 1"));
+        $(".modal-body").shouldHave(text("v"));
         sleep(3000);
     }
 }
